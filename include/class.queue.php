@@ -598,6 +598,7 @@ class CustomQueue extends VerySimpleModel {
                 'status__id' =>__('Current Status'),
                 'lastupdate' =>     __('Last Updated'),
                 'est_duedate' =>    __('SLA Due Date'),
+                'sla_id' => __('SLA Plan'),
                 'duedate' =>        __('Due Date'),
                 'closed' =>         __('Closed Date'),
                 'isoverdue' =>      __('Overdue'),
@@ -1943,7 +1944,7 @@ extends QueueColumnAnnotation {
 
 class DataSourceField
 extends ChoiceField {
-    function getChoices($verbose=false) {
+    function getChoices($verbose=false, $options=array()) {
         $config = $this->getConfiguration();
         $root = $config['root'];
         $fields = array();
@@ -2154,7 +2155,7 @@ extends ChoiceField {
             return new $choices(array('name' => $prop));
     }
 
-    function getChoices($verbose=false) {
+    function getChoices($verbose=false, $options=array()) {
         if (isset($this->property))
             return static::$properties[$this->property];
 
